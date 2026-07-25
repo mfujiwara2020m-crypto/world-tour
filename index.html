@@ -24,31 +24,31 @@
 </head>
 <body>
 
-    <div id="title-overlay">行きたい国をタッチしてください</div>
+    <div id="title-overlay">興味のある国をタッチしてください</div>
 
     <a-scene>
         <!-- 背景色 -->
-        <a-sky color="#111111"></a-sky>
+        <a-sky color="#	#00FFFF"></a-sky>
 
         <!-- カメラと視線カーソル -->
         <a-camera position="0 1.6 3">
             <a-cursor color="#FFF"></a-cursor>
         </a-camera>
 
-        <!-- 【フランスへの扉：箱（カード）】 -->
+        <!-- 【韓国への扉：箱（カード）】 -->
         <!-- onclickで korea.html へジャンプします -->
         <a-entity position="-1.2 1.5 -2.5" onclick="location.href='korea.html'" class="clickable">
             <!-- 立体的な箱（または板） -->
-            <a-box width="1.2" height="0.8" depth="0.1" color="#3a6073"></a-box>
+            <a-box width="1.2" height="1.6" depth="0.1" color="#3a6073"></a-box>
             <!-- 国名テキスト -->
             <a-text value="korea" align="center" position="0 0 0.06" color="#FFF" width="4"></a-text>
         </a-entity>
 
-        <!-- 【日本への扉：箱（カード）】 -->
+        <!-- 【タイへの扉：箱（カード）】 -->
         <!-- onclickで thai.html へジャンプします -->
         <a-entity position="1.2 1.5 -2.5" onclick="location.href='thai.html'" class="clickable">
             <!-- 立体的な箱（または板） -->
-            <a-box width="1.2" height="0.8" depth="0.1" color="#d38312"></a-box>
+            <a-box width="1.2" height="1.6" depth="0.1" color="#d38312"></a-box>
             <!-- 国名テキスト -->
             <a-text value="thai" align="center" position="0 0 0.06" color="#FFF" width="4"></a-text>
         </a-entity>
