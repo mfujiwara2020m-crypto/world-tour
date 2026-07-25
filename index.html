@@ -3,32 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Travel Memories - A-Frame</title>
+    <title>3D Video Travel Memories</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <style>
+        /* 閉じるボタン（全画面再生時に戻るためのUI） */
+        #close-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <a-scene>
-        <a-sky color="#222222"></a-sky>
 
-        <!-- 標準のcameraコンポーネントを使用（これによってマウスやタッチでの視点移動が有効になります） -->
-        <a-camera position="0 1.6 3">
+    <button id="close-btn" onclick="closeVideo()">✕ 閉じる</button>
+
+    <a-scene>
+        <a-assets>
+            <video id="video-japan" src="videos/japan.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+            <video id="video-france" src="videos/france.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+        </a-assets>
+
+        <a-sky color="#111111"></a-sky>
+
+        <a-camera id="main-camera" position="0 1.6 3">
             <a-cursor color="#FFF"></a-cursor>
         </a-camera>
 
-        <!-- タイトル -->
-        <a-text value="My Travel Memories" position="-1.5 2.8 -3" color="#FFF" width="6"></a-text>
-
-        <!-- 日本のカード -->
-        <a-entity position="-1.2 0.5 -3">
-            <a-plane width="1.2" height="1.5" color="#FFF" class="clickable" onclick="location.href='countries/japan.html'"></a-plane>
-            <a-text value="Japan" position="-0.4 -0.9 0.01" color="#000" width="3"></a-text>
+        <a-entity id="card-japan" position="-1.2 1.5 -2.5">
+            <a-video src="#video-japan" width="1.6" height="0.9" class="clickable" onclick="playFullScreen('japan')"></a-video>
+            <a-text value="Japan" position="-0.3 -0.6 0" color="#FFF" width="4"></a-text>
         </a-entity>
 
-        <!-- フランスのカード -->
-        <a-entity position="1.2 0.5 -3">
-            <a-plane width="1.2" height="1.5" color="#FFF" class="clickable" onclick="location.href='countries/france.html'"></a-plane>
-            <a-text value="France" position="-0.4 -0.9 0.01" color="#000" width="3"></a-text>
+        <a-entity id="card-france" position="1.2 1.5 -2.5">
+            <a-video src="#video-france" width="1.6" height="0.9" class="clickable" onclick="playFullScreen('france')"></a-video>
+            <a-text value="France" position="-0.4 -0.6 0" color="#FFF" width="4"></a-text>
         </a-entity>
+
+        <a-video id="fullscreen-screen" position="0 1.6 -1" width="3.2" height="1.8" visible="false"></a-video>
+
     </a-scene>
+
+    <script>
+        let currentVideoEl = null;
+
+        // 動画を全画面（視界いっぱい）で再生する関数
+        function playFullScreen(country) {
+            const videoEl = document.querySelector(`#video-${country}`);
+            const screen = document.querySelector('#fullscreen-screen');
+            const closeBtn = document.querySelector('#close-btn');
+
+            // 選択した動画をスクリーンにセット
+            screen.setAttribute('src', `#video-${country}`);
+            screen.setAttribute('visible', 'true');
+            
+            // 動画再生スタート
+            videoEl.play();
+            currentVideoEl = videoEl;
+
+            // 閉じるボタンを表示
+            closeBtn.style.display = 'block';
+        }
+
+        // 全画面再生を終了して元の選択画面に戻る関数
+        function closeVideo() {
+            const screen = document.querySelector('#fullscreen-screen');
+            const closeBtn = document.querySelector('#close-btn');
+
+            if (currentVideoEl) {
+                currentVideoEl.pause();
+                currentVideoEl.currentTime = 0; // 一時停止して最初に戻す
+            }
+
+            // スクリーンとボタンを隠す
+            screen.setAttribute('visible', 'false');
+            closeBtn.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
