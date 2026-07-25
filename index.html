@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Travel Memories - A-Frame</title>
+    <!-- A-Frameのライブラリを読み込み -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- 3D空間の背景色（暗めのグレー） -->
+        <a-sky color="#222222"></a-sky>
+
+        <!-- カメラと視線（カーソル）の設定 -->
+        <a-entity camera position="0 1.6 3">
+            <a-cursor color="#FFF"></a-cursor>
+        </a-entity>
+
+        <!-- タイトルテキスト -->
+        <a-text value="My Travel Memories" position="-1.5 2.8 -3" color="#FFF" width="6"></a-text>
+        <a-text value="Select a country to view photos" position="-1.8 2.4 -3" color="#AAA" width="4" size="0.5"></a-text>
+
+        <!-- 日本のカード（クリックすると japan.html へジャンプ） -->
+        <a-entity position="-1.2 0.5 -3">
+            <!-- カードの背景（板） -->
+            <a-plane position="0 0 0" width="1.2" height="1.5" color="#FFF" 
+                     class="clickable" 
+                     onclick="location.href='countries/japan.html'">
+            </a-plane>
+            <!-- 国名ラベル -->
+            <a-text value="Japan" position="-0.4 -0.9 0.01" color="#000" width="3"></a-text>
+        </a-entity>
+
+        <!-- フランスのカード（クリックすると france.html へジャンプ） -->
+        <a-entity position="1.2 0.5 -3">
+            <!-- カードの背景（板） -->
+            <a-plane position="0 0 0" width="1.2" height="1.5" color="#FFF" 
+                     class="clickable" 
+                     onclick="location.href='countries/france.html'">
+            </a-plane>
+            <!-- 国名ラベル -->
+            <a-text value="France" position="-0.4 -0.9 0.01" color="#000" width="3"></a-text>
+        </a-entity>
+
+    </a-scene>
+</body>
+</html>
