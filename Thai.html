@@ -3,42 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>France - Atmospheric Experience</title>
-    <!-- A-Frame および 環境音コンポーネントの読み込み -->
+    <title>Thailand - Visual Experience</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 </head>
 <body>
 
     <a-scene>
-        <!-- 【1. 音響演出】空間のあちこちから聞こえる現地の環境音（パリのカフェや街のざわめき） -->
-        <a-sound src="sounds/france-ambience.mp3" autoplay="true" loop="true" volume="0.8"></a-sound>
+        <!-- 【1. タイの空気感を彩る環境音】（お好みで音声ファイルを指定） -->
+        <a-sound src="sounds/thailand-ambience.mp3" autoplay="true" loop="true" volume="0.6"></a-sound>
 
-        <!-- 【2. 視覚演出（色と霧）】夕暮れのパリをイメージした温かみのある暗がりとフォグ（奥行き） -->
-        <a-sky color="#2c1d2e"></a-sky>
-        <a-fog type="exponential" color="#2c1d2e" density="0.08"></a-fog>
+        <!-- 【2. 視覚演出：夕暮れ〜夜のタイをイメージした背景とフォグ】 -->
+        <!-- 深い藍色（夜空）に、温かいオレンジの霧で熱気を表現 -->
+        <a-sky color="#1a1128"></a-sky>
+        <a-fog type="exponential" color="#2c1638" density="0.06"></a-fog>
 
-        <!-- 雰囲気を作るための温かい街灯の光 -->
-        <a-light type="point" color="#ffaa55" position="0 3 -2" intensity="1.5" distance="10"></a-light>
-        <a-light type="ambient" color="#443355" intensity="0.5"></a-light>
+        <!-- 黄金を美しく照らすリッチなライト（ポイントライト＆アンビエント） -->
+        <a-light type="point" color="#ffaa22" position="0 4 -2" intensity="2" distance="12"></a-light>
+        <a-light type="ambient" color="#332244" intensity="0.6"></a-light>
 
         <!-- カメラと視線カーソル -->
         <a-camera position="0 1.6 2">
-            <a-cursor color="#FFF"></a-cursor>
+            <a-cursor color="#FFD700"></a-cursor>
         </a-camera>
 
-        <!-- 【3. 空間のメイン要素】普通の写真を美しく配置し、タッチで思い出のテキストやストーリーが浮かぶ -->
-        <a-entity position="0 1.5 -3">
-            <!-- 現地の写真（2D） -->
-            <a-image src="images/france-scene.jpg" width="3" height="2" position="0 0 0"></a-image>
+        <!-- 【3. 視覚演出：空中に浮かぶ「黄金のひし形（八面体）」】 -->
+        <!-- 寺院の尖塔や伝統文様をイメージしたダイヤモンド型のオブジェクトがゆっくり回転 -->
+        <a-octahedron position="0 2.2 -3.5" radius="1.2" color="#FFD700" 
+                      metalness="0.85" roughness="0.15"
+                      animation="property: rotation; to: 0 360 360; loop: true; dur: 12000">
+        </a-octahedron>
+
+        <!-- 光の輝きを強調する小さなひし形を周囲に配置 -->
+        <a-octahedron position="-1.5 1.5 -2.5" radius="0.4" color="#ff7700" metalness="0.5" roughness="0.2"
+                      animation="property: rotation; to: 360 0 0; loop: true; dur: 8000">
+        </a-octahedron>
+        <a-octahedron position="1.5 1.5 -2.5" radius="0.4" color="#ff7700" metalness="0.5" roughness="0.2"
+                      animation="property: rotation; to: 360 360 0; loop: true; dur: 9000">
+        </a-octahedron>
+
+        <!-- 【4. メインコンテンツ（写真とテキスト）】 -->
+        <a-entity position="0 1.2 -3">
+            <!-- 現地の美しいスナップ写真（2D） -->
+            <a-image src="images/thailand-scene.jpg" width="2.8" height="1.8" position="0 0 0"></a-image>
             
-            <!-- その国を象徴するタイトル・メッセージ -->
-            <a-text value="- Paris, France -" position="-0.8 -1.2 0" color="#ffccaa" width="5"></a-text>
+            <!-- タイのタイトルメッセージ -->
+            <a-text value="- Kingdom of Thailand -" align="center" position="0 -1.1 0" color="#FFD700" width="4.5"></a-text>
         </a-entity>
 
-        <!-- 戻るボタン（トップへ帰る） -->
-        <a-entity position="0 0.5 -2" onclick="location.href='index.html'" class="clickable">
-            <a-plane width="1.2" height="0.4" color="#333" opacity="0.8">
-                <a-text value="Back to Menu" align="center" color="#FFF" width="3" position="0 0 0.01"></a-text>
+        <!-- 【5. 戻るボタン】 -->
+        <a-entity position="0 0.3 -2" onclick="location.href='index.html'" class="clickable">
+            <a-plane width="1.2" height="0.4" color="#222" opacity="0.8" metalness="0.3">
+                <a-text value="Back to Menu" align="center" color="#FFD700" width="3" position="0 0 0.01"></a-text>
             </a-plane>
         </a-entity>
 
