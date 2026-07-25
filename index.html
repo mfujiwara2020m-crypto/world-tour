@@ -29,24 +29,24 @@
 
     <a-scene>
         <a-assets>
-            <video id="video-japan" src="videos/japan.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-            <video id="video-france" src="videos/france.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+            <video id="video-korea" src="videos/korea.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+            <video id="video-thai" src="videos/thai.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
         </a-assets>
 
-        <a-sky color="#111111"></a-sky>
+        <a-sky color="#00bfff"></a-sky>
 
         <a-camera id="main-camera" position="0 1.6 3">
             <a-cursor color="#FFF"></a-cursor>
         </a-camera>
 
-        <a-entity id="card-japan" position="-1.2 1.5 -2.5">
-            <a-video src="#video-japan" width="1.6" height="0.9" class="clickable" onclick="playFullScreen('japan')"></a-video>
-            <a-text value="Japan" position="-0.3 -0.6 0" color="#FFF" width="4"></a-text>
+        <a-entity id="card-korea" position="-1.2 1.5 -2.5">
+            <a-video src="#video-korea" width="2.5" height="1.7" class="clickable" onclick="playFullScreen('korea')"></a-video>
+            <a-text value="Korea" position="-0.3 -0.6 0" color="#FFF" width="4"></a-text>
         </a-entity>
 
-        <a-entity id="card-france" position="1.2 1.5 -2.5">
-            <a-video src="#video-france" width="1.6" height="0.9" class="clickable" onclick="playFullScreen('france')"></a-video>
-            <a-text value="France" position="-0.4 -0.6 0" color="#FFF" width="4"></a-text>
+        <a-entity id="card-thai" position="1.2 1.5 -2.5">
+            <a-video src="#video-thai" width="2.5" height="1.7" class="clickable" onclick="playFullScreen('thai')"></a-video>
+            <a-text value="Thai" position="-0.4 -0.6 0" color="#FFF" width="4"></a-text>
         </a-entity>
 
         <a-video id="fullscreen-screen" position="0 1.6 -1" width="3.2" height="1.8" visible="false"></a-video>
