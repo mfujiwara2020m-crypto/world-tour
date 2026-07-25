@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>France - Atmospheric Experience</title>
+    <!-- A-Frame および 環境音コンポーネントの読み込み -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+<body>
+
+    <a-scene>
+        <!-- 【1. 音響演出】空間のあちこちから聞こえる現地の環境音（パリのカフェや街のざわめき） -->
+        <a-sound src="sounds/france-ambience.mp3" autoplay="true" loop="true" volume="0.8"></a-sound>
+
+        <!-- 【2. 視覚演出（色と霧）】夕暮れのパリをイメージした温かみのある暗がりとフォグ（奥行き） -->
+        <a-sky color="#2c1d2e"></a-sky>
+        <a-fog type="exponential" color="#2c1d2e" density="0.08"></a-fog>
+
+        <!-- 雰囲気を作るための温かい街灯の光 -->
+        <a-light type="point" color="#ffaa55" position="0 3 -2" intensity="1.5" distance="10"></a-light>
+        <a-light type="ambient" color="#443355" intensity="0.5"></a-light>
+
+        <!-- カメラと視線カーソル -->
+        <a-camera position="0 1.6 2">
+            <a-cursor color="#FFF"></a-cursor>
+        </a-camera>
+
+        <!-- 【3. 空間のメイン要素】普通の写真を美しく配置し、タッチで思い出のテキストやストーリーが浮かぶ -->
+        <a-entity position="0 1.5 -3">
+            <!-- 現地の写真（2D） -->
+            <a-image src="images/france-scene.jpg" width="3" height="2" position="0 0 0"></a-image>
+            
+            <!-- その国を象徴するタイトル・メッセージ -->
+            <a-text value="- Paris, France -" position="-0.8 -1.2 0" color="#ffccaa" width="5"></a-text>
+        </a-entity>
+
+        <!-- 戻るボタン（トップへ帰る） -->
+        <a-entity position="0 0.5 -2" onclick="location.href='index.html'" class="clickable">
+            <a-plane width="1.2" height="0.4" color="#333" opacity="0.8">
+                <a-text value="Back to Menu" align="center" color="#FFF" width="3" position="0 0 0.01"></a-text>
+            </a-plane>
+        </a-entity>
+
+    </a-scene>
+
+</body>
+</html>
