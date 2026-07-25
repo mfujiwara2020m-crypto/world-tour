@@ -3,91 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Video Travel Memories</title>
+    <title>Travel Memories - Menu</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <style>
-        /* 閉じるボタン（全画面再生時に戻るためのUI） */
-        #close-btn {
-            display: none;
+        /* 画面中央に案内テキストを固定表示する場合のデザイン（お好みで） */
+        #title-overlay {
             position: fixed;
             top: 20px;
-            right: 20px;
-            z-index: 999;
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7);
+            left: 50%;
+            transform: translateX(-50%);
             color: white;
-            border: 2px solid white;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
+            font-family: sans-serif;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 10;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <button id="close-btn" onclick="closeVideo()">✕ 閉じる</button>
+    <div id="title-overlay">行きたい国をタッチしてください</div>
 
     <a-scene>
-        <a-assets>
-            <video id="video-korea" src="videos/korea.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-            <video id="video-thai" src="videos/thai.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-        </a-assets>
+        <!-- 背景色 -->
+        <a-sky color="#111111"></a-sky>
 
-        <a-sky color="#00bfff"></a-sky>
-
-        <a-camera id="main-camera" position="0 1.6 3">
+        <!-- カメラと視線カーソル -->
+        <a-camera position="0 1.6 3">
             <a-cursor color="#FFF"></a-cursor>
         </a-camera>
 
-        <a-entity id="card-korea" position="-1.2 1.5 -2.5">
-            <a-video src="#video-korea" width="3.0" height="4.0" class="clickable" onclick="playFullScreen('korea')"></a-video>
-            <a-text value="Korea" position="-0.3 -0.6 0" color="#FFF" width="4"></a-text>
+        <!-- 【フランスへの扉：箱（カード）】 -->
+        <!-- onclickで france.html へジャンプします -->
+        <a-entity position="-1.2 1.5 -2.5" onclick="location.href='france.html'" class="clickable">
+            <!-- 立体的な箱（または板） -->
+            <a-box width="1.2" height="0.8" depth="0.1" color="#3a6073"></a-box>
+            <!-- 国名テキスト -->
+            <a-text value="France" align="center" position="0 0 0.06" color="#FFF" width="4"></a-text>
         </a-entity>
 
-        <a-entity id="card-thai" position="1.2 1.5 -2.5">
-            <a-video src="#video-thai" width="3.0" height="4.0" class="clickable" onclick="playFullScreen('thai')"></a-video>
-            <a-text value="Thai" position="-0.4 -0.6 0" color="#FFF" width="4"></a-text>
+        <!-- 【日本への扉：箱（カード）】 -->
+        <!-- onclickで japan.html へジャンプします -->
+        <a-entity position="1.2 1.5 -2.5" onclick="location.href='japan.html'" class="clickable">
+            <!-- 立体的な箱（または板） -->
+            <a-box width="1.2" height="0.8" depth="0.1" color="#d38312"></a-box>
+            <!-- 国名テキスト -->
+            <a-text value="Japan" align="center" position="0 0 0.06" color="#FFF" width="4"></a-text>
         </a-entity>
-
-        <a-video id="fullscreen-screen" position="0 1.6 -1" width="3.2" height="1.8" visible="false"></a-video>
 
     </a-scene>
 
-    <script>
-        let currentVideoEl = null;
-
-        // 動画を全画面（視界いっぱい）で再生する関数
-        function playFullScreen(country) {
-            const videoEl = document.querySelector(`#video-${country}`);
-            const screen = document.querySelector('#fullscreen-screen');
-            const closeBtn = document.querySelector('#close-btn');
-
-            // 選択した動画をスクリーンにセット
-            screen.setAttribute('src', `#video-${country}`);
-            screen.setAttribute('visible', 'true');
-            
-            // 動画再生スタート
-            videoEl.play();
-            currentVideoEl = videoEl;
-
-            // 閉じるボタンを表示
-            closeBtn.style.display = 'block';
-        }
-
-        // 全画面再生を終了して元の選択画面に戻る関数
-        function closeVideo() {
-            const screen = document.querySelector('#fullscreen-screen');
-            const closeBtn = document.querySelector('#close-btn');
-
-            if (currentVideoEl) {
-                currentVideoEl.pause();
-                currentVideoEl.currentTime = 0; // 一時停止して最初に戻す
-            }
-
-            // スクリーンとボタンを隠す
-            screen.setAttribute('visible', 'false');
-            closeBtn.style.display = 'none';
-        }
-    </script>
 </body>
 </html>
